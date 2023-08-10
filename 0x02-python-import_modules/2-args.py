@@ -7,7 +7,8 @@ if __name__ == "__main__":
     elif arg_count == 1:
         print("1 argument:")
     else:
-        print("{} arguments:".format(word_count))
+        print("{} arguments:".format(arg_count))
     i = 0
-    while i < word_count:
+    while i < arg_count:
         print("{}: {}".format(i + 1, sys.argv[i + 1]))
+        i+=1
