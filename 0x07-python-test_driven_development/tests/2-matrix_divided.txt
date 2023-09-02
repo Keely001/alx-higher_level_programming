@@ -1,0 +1,13 @@
+#2-matrix_divided.py
+====================
+
+
+divides the whole matrixs by a specific number that is not zero.
+----------------------------------------------------------------
+
+Import the function:
+    >>> matrix_divided = __import__('2-matrix_divided').matrix_divided
+
+Dividing a matrix by 3:
+    >>> matrix_divided([[3,6,9], [6,12,15]], 3)
+    [[1.0,2.0,3.0],[2.0,4.0,5.0]]
