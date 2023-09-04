@@ -1,0 +1,60 @@
+5-text_indentation
+======================
+
+Usage of ``text_indentation``
+-----------------------------
+
+Import function from module:
+    >>> text_indentation = __import__('5-text_indentation').text_indentation
+
+Test for spaces between:
+    >>> text_indentation("    Mama    ")
+    Mama
+
+Test for fullstop:
+    >>> text_indentation("hello.")
+    hello.
+    <BLANKLINE>
+
+Test for a word with a spaces around
+    >>> text_indentation("    Hello .  ")
+    Hello .
+    <BLANKLINE>
+
+Test  all special characters
+
+    >>> text_indentation(".?:")
+    .
+    <BLANKLINE>
+    ?
+    <BLANKLINE>
+    :
+    <BLANKLINE>
+
+Test  None as a text
+
+    >>> text_indentation(None)
+    Traceback (most recent call last):
+    	      ...
+    TypeError: text must be a string
+
+Test for a number
+
+    >>> text_indentation(10)
+    Traceback (most recent call last):
+    	      ...
+    TypeError: text must be a string
+
+Test an empty string
+
+    >>> text_indentation('    ')
+
+Test a new line as a text
+
+    >>> text_indentation('\n')
+    <BLANKLINE>
+
+Test with spaces and one new line 3
+
+   >>> text_indentation("\n   ")
+   <BLANKLINE>
