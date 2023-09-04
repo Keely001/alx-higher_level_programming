@@ -16,10 +16,10 @@ class Rectangle:
             width (int): The width of rectangle.
             height (int): The height of rectangle.
         """
-        
+
         self.height = height
         self.width = width
-        type(self).number_of_instances +=1
+        type(self).number_of_instances += 1
 
     @property
     def width(self):
@@ -46,6 +46,7 @@ class Rectangle:
         if value < 0:
             raise ValueError("height must be >= 0")
         self.__height = value
+
     def area(self):
         """returns area of rectangle"""
         return(self.__width * self.__height)
@@ -78,6 +79,7 @@ class Rectangle:
         """message for deletion and decrement of instances"""
         type(self).number_of_instances -= 1
         print("Bye rectangle...")
+
     @staticmethod
     def bigger_or_equal(rect_1, rect_2):
         """ returns rect with  the bigger area
@@ -89,15 +91,15 @@ class Rectangle:
         """
         if not isinstance(rect_1, Rectangle):
             raise TypeError("rect_1 must be an instance of Rectangle")
-        
+
         if not isinstance(rect_2, Rectangle):
             raise TypeError("rect_2 must be an instance of Rectangle")
-        
+
         if rect_1.area() >= rect_2.area():
             return (rect_1)
-        
+
         return (rect_2)
-    
+
     @classmethod
     def square(cls, size=0):
         """Returns a square
@@ -105,3 +107,4 @@ class Rectangle:
             size (int): width and height of square
         """
         return (cls(size, size))
+    

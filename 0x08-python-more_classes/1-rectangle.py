@@ -4,7 +4,7 @@
 
 
 class Rectangle:
-    """a class Rectangle that defines a rectangle 
+    """a class Rectangle that defines a rectangle
         by: (based on 1-rectangle.py)"""
 
     def __init__(self, width=0, height=0):
@@ -21,7 +21,7 @@ class Rectangle:
     def width(self):
         """set new width"""
         return(self.__width)
-    
+
     @width.setter
     def width(self, value):
         if isinstance(value, int) is False:

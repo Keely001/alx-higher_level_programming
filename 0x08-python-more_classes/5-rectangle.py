@@ -13,7 +13,7 @@ class Rectangle:
             width (int): The width of rectangle.
             height (int): The height of rectangle.
         """
-        
+
         self.height = height
         self.width = width
 
@@ -42,6 +42,7 @@ class Rectangle:
         if value < 0:
             raise ValueError("height must be >= 0")
         self.__height = value
+
     def area(self):
         """returns area of rectangle"""
         return(self.__width * self.__height)
@@ -51,7 +52,7 @@ class Rectangle:
         if self.__height == 0 or self.__width == 0:
             return(0)
         return((self.width * 2) + (self.height * 2))
-    
+
     def __str__(self) -> str:
         """print the rectangle using #"""
         if self.__width == 0 or self.__height == 0:
