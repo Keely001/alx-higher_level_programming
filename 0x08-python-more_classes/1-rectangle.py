@@ -1,9 +1,11 @@
 #!/usr/bin/python3
-"""a class Rectangle that defines a rectangle by: (based on 1-rectangle.py)"""
+"""a class Rectangle that defines a rectangle by:
+(based on 1-rectangle.py)"""
 
 
 class Rectangle:
-    """a class Rectangle that defines a rectangle by: (based on 1-rectangle.py)"""
+    """a class Rectangle that defines a rectangle 
+    by: (based on 1-rectangle.py)"""
 
     def __init__(self, width=0, height=0):
         """Initializes the rectangle.
@@ -11,7 +13,7 @@ class Rectangle:
             width (int): The width of rectangle.
             height (int): The height of rectangle.
         """
-        
+
         self.height = height
         self.width = width
 
@@ -19,7 +21,7 @@ class Rectangle:
     def width(self):
         """set new width"""
         return(self.__width)
-
+    
     @width.setter
     def width(self, value):
         if isinstance(value, int) is False:
@@ -40,4 +42,3 @@ class Rectangle:
         if value < 0:
             raise ValueError("height must be >= 0")
         self.__height = value
-        
