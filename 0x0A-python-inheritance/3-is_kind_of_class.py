@@ -8,7 +8,7 @@ def is_kind_of_class(obj, a_class):
         obj (any): object
         a_class (type): The class.
     Return:
-       true if same , else false 
+       true if same , else false
     """
     if isinstance(obj, a_class):
         return True
