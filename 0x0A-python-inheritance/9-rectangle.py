@@ -4,28 +4,26 @@ BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
 
 class Rectangle(BaseGeometry):
-    """a class Rectangle that inherits from BaseGeometry"""
+    """ a rectangle using BaseGeometry."""
 
     def __init__(self, width, height):
-        """creates a rectangle
-        Args:
-            width : width
-            height : height
-        Return:
-            None
-        """
-        self.integer_validator("width", width)
-        self.__width = width
-        self.integer_validator("height", height)
-        self.__height = height
-        
-        def area(self):
-            """Returns the area"""
-            return self.__width * self.__height
+        """new Rectangle.
 
-        def __str__(self):
-            """print() should print, and str() should return,
-            the following rectangle description"""
-            string = "[" + str(self.__class__.__name__) + "] "
-            string += str(self.__width) + "/" + str(self.__height)
-            return string
+        Args:
+            width (int): width
+            height (int): height
+        """
+        super().integer_validator("width", width)
+        self.__width = width
+        super().integer_validator("height", height)
+        self.__height = height
+
+    def area(self):
+        """the area of the rectangle."""
+        return self.__width * self.__height
+
+    def __str__(self):
+        """returns readable info"""
+        string = "[" + str(self.__class__.__name__) + "] "
+        string += str(self.__width) + "/" + str(self.__height)
+        return string
