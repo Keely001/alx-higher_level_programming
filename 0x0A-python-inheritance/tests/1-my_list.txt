@@ -1,0 +1,41 @@
+function to print list 
+======================
+import module:
+    >>> MyList = __import__('1-my_list').MyList
+
+appending and testing the list:
+    >>> my_list = MyList()
+    >>> my_list.append(1)
+    >>> my_list.append(4)
+    >>> my_list.append(2)
+    >>> my_list.append(3)
+    >>> my_list.append(5)
+    >>> print(my_list)
+    [1, 4, 2, 3, 5]
+    >>> my_list.print_sorted()
+    [1, 2, 3, 4, 5]
+    >>> print(my_list)
+    [1, 4, 2, 3, 5]
+
+passing an empty list:
+    >>> my_list = MyList()
+    >>> my_list.print_sorted()
+    []
+
+Instance has the correct type:
+    >>> my_list = MyList()
+    >>> type(my_list) == MyList
+    True
+
+check if MyList is a subclass of list:
+    >>> issubclass(MyList, list)
+    True
+
+checking for the same number
+    >>> my_list2 = MyList()
+    >>> my_list2.append(1)
+    >>> my_list2.append(1)
+    >>> my_list2.append(1)
+    >>> my_list2.append(1)
+    >>> my_list2.print_sorted()
+    [1, 1, 1, 1]
