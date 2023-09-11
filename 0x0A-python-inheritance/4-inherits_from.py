@@ -1,22 +1,16 @@
 #!/usr/bin/python3
-"""a function that returns True if the object is an 
-instance of a class that inherited (directly or indirectly)
-from the specified class ; otherwise False"""
+""" inherited class-checking function."""
 
 
 def inherits_from(obj, a_class):
-    """a function that returns True if
-    the object is an instance of a class that inherited 
-    (directly or indirectly) from the specified class ; 
-    otherwise False
-    
+    """Checks if an object is an inherited instance of a class.
+
     Args:
-        obj (any): object
-        a_class (type): The class.
-    Return:
-       true if same 
-    otherwise:
-        False
+        obj (any): object to check.
+        a_class (type): class to match 
+    Returns:
+        If obj is an inherited instance of a_class = True.
+        Otherwise = False.
     """
     if issubclass(type(obj), a_class) and type(obj) != a_class:
         return True
