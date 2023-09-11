@@ -7,7 +7,7 @@ def inherits_from(obj, a_class):
 
     Args:
         obj (any): object to check.
-        a_class (type): class to match 
+        a_class (type): class to match
     Returns:
         If obj is an inherited instance of a_class = True.
         Otherwise = False.
