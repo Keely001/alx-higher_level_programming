@@ -1,4 +1,3 @@
-100-my_int.py
 #!/usr/bin/python3
 """a class MyInt that inherits from int"""
 
