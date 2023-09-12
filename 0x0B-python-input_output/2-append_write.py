@@ -5,7 +5,7 @@
 def append_write(filename="", text=""):
     """function that appends text to a file
     args:
-        filename:name of file 
+        filename:name of file
         text:text to append
     returns:
         the number of characters appended"""

@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ script that adds all arguments to a python list"""
 import sys
-import os.path
+import os
 
 
 load_f = \
