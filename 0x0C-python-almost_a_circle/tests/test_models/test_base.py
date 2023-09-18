@@ -1,107 +1,116 @@
 #!/usr/bin/python3
-""" unittest for base class """
-
+""" Module for test Base class """
 import unittest
 from io import StringIO
 import os
-from models.base import Base
-from models.square import Square
 from unittest.mock import patch
 from unittest import TestCase
+from models.base import Base
+from models.square import Square
 from models.rectangle import Rectangle
 
 
 class TestBaseMethods(unittest.TestCase):
-    """ test the Base class """
+    """ Base class """
 
     def setUp(self):
-        """ for each test """
+        """ for testing """
         Base._Base__nb_objects = 0
 
     def test_id(self):
-        """ Test for assigned  id """
-        nw = Base(1)
-        self.assertEqual(nw.id, 1)
+        """ assigned id """
+        new = Base(1)
+        self.assertEqual(new.id, 1)
 
     def test_id_d(self):
-        """ Test for default id """
-        nw = Base()
-        self.assertEqual(nw.id, 1)
+        """ default id """
+        new = Base()
+        self.assertEqual(new.id, 1)
 
     def test_no_arg(self):
-        base1 = Base()
-        base2 = Base()
-        self.assertEqual(base1.id, base2.id - 1)
+        b1 = Base()
+        b2 = Base()
+        self.assertEqual(b1.id, b2.id - 1)
 
     def test_id_m(self):
-        """ Test object attributes and assigned id """
-        nw1 = Base()
-        nw2 = Base()
-        nw3 = Base(1024)
-        self.assertEqual(nw1.id, 1)
-        self.assertEqual(nw2.id, 2)
-        self.assertEqual(nw3.id, 1024)
-
-    def test_tuple_id(self):
-        self.assertEqual((3, 2), Base((3, 2)).id)
+        """ object attributes and assigned id """
+        n1 = Base()
+        n2 = Base(1024)
+        n3 = Base()
+        self.assertEqual(n1.id, 1)
+        self.assertEqual(n2.id, 1024)
+        self.assertEqual(n3.id, 2)
 
     def test_list_id(self):
-        self.assertEqual([8, 4, 3], Base([8, 4, 3]).id)
+        self.assertEqual([1, 2, 3], Base([1, 2, 3]).id)
 
-    def test_str_id(self):
-        """ test if """
+    def test_tuple_id(self):
+        self.assertEqual((1, 2), Base((1, 2)).id)
+
+    def test_set_id(self):
+        self.assertEqual({1, 2, 3}, Base({1, 2, 3}).id)
+
+    def test_string_id(self):
+        """ string id """
         new = Base('1')
         self.assertEqual(new.id, '1')
-        
-    def test_set_id(self):
-        self.assertEqual({6, 2, 3}, Base({6, 2, 3}).id)
 
-    def test_mo_args_id(self):
-        """ test for args """
+    def test_more_args_id(self):
+        """ passing more args to init method """
         with self.assertRaises(TypeError):
             new = Base(1, 1)
 
-    def test_to_json_string_rect_one_dict(self):
-        rec = Rectangle(10, 7, 2, 8, 6)
-        self.assertTrue(len(Base.to_json_string([rec.to_dictionary()])) == 53)
+    def test_to_json_string_rectangle_one_dict(self):
+        r = Rectangle(10, 7, 2, 8, 6)
+        self.assertTrue(len(Base.to_json_string([r.to_dictionary()])) == 53)
 
     def test_to_json_string_rectangle_two_dicts(self):
-        rec1 = Rectangle(2, 3, 5, 19, 2)
-        rec2 = Rectangle(4, 2, 4, 1, 12)
-        list_dicts = [rec1.to_dictionary(), rec2.to_dictionary()]
+        r1 = Rectangle(2, 3, 5, 19, 2)
+        r2 = Rectangle(4, 2, 4, 1, 12)
+        list_dicts = [r1.to_dictionary(), r2.to_dictionary()]
         self.assertTrue(len(Base.to_json_string(list_dicts)) == 106)
 
-    def test_to_json_string_sq_type(self):
-        sq = Square(1, 2, 30, 4)
-        self.assertEqual(str, type(Base.to_json_string([sq.to_dictionary()])))
+    def test_to_json_string_square_type(self):
+        s = Square(10, 2, 3, 4)
+        self.assertEqual(str, type(Base.to_json_string([s.to_dictionary()])))
 
-    def test_to_json_string_sq(self):
-        sq = Square(1, 2, 30, 4)
-        self.assertTrue(len(Base.to_json_string([sq.to_dictionary()])) == 39)
+    def test_to_json_string_square_one_dict(self):
+        s = Square(10, 2, 3, 4)
+        self.assertTrue(len(Base.to_json_string([s.to_dictionary()])) == 39)
 
-    def test_save_to_file_two_rec(self):
-        rec1 = Rectangle(10, 7, 2, 8, 5)
-        rec2 = Rectangle(2, 4, 1, 2, 3)
-        Rectangle.save_to_file([rec1, rec2])
+    def test_to_json_string_square_two_dicts(self):
+        s1 = Square(10, 2, 3, 4)
+        s2 = Square(4, 5, 21, 2)
+        list_dicts = [s1.to_dictionary(), s2.to_dictionary()]
+        self.assertTrue(len(Base.to_json_string(list_dicts)) == 78)
+
+    def test_save_to_file_two_rectangles(self):
+        r1 = Rectangle(10, 7, 2, 8, 5)
+        r2 = Rectangle(2, 4, 1, 2, 3)
+        Rectangle.save_to_file([r1, r2])
         with open("Rectangle.json", "r") as f:
             self.assertTrue(len(f.read()) == 105)
 
-    def test_save_to_file_a_sq(self):
-        sq = Square(10, 7, 2, 8)
-        Square.save_to_file([sq])
+    def test_save_to_file_a_square(self):
+        s = Square(10, 7, 2, 8)
+        Square.save_to_file([s])
         with open("Square.json", "r") as f:
             self.assertTrue(len(f.read()) == 39)
 
-    def test_load_from_file_square_type(self):
-        sq1 = Square(5, 1, 3, 3)
-        sq2 = Square(9, 5, 2, 3)
-        Square.save_to_file_csv([sq1, sq2])
+    def test_load_from_file_csv_square_type(self):
+        s1 = Square(5, 1, 3, 3)
+        s2 = Square(9, 5, 2, 3)
+        Square.save_to_file_csv([s1, s2])
         output = Square.load_from_file_csv()
         self.assertTrue(all(type(obj) == Square for obj in output))
 
-    def test_load_from_file_no_file(self):
-        outp = Square.load_from_file_csv()
-        self.assertEqual([], outp)
+    def test_load_from_file_csv_no_file(self):
+        output = Square.load_from_file_csv()
+        self.assertEqual([], output)
+
+    def test_load_from_file_csv_more_than_one_arg(self):
+        with self.assertRaises(TypeError):
+            Base.load_from_file_csv([], 1)
 
 
 if __name__ == "__main__":

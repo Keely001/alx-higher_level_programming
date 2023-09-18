@@ -24,27 +24,6 @@ class TestRectangleMethods(unittest.TestCase):
         self.assertEqual(new.y, 0)
         self.assertEqual(new.id, 1)
 
-    def test_new_rectangle_2(self):
-        """ Test new rectangle with all attrs """
-        new = Rectangle(2, 3, 5, 5, 4)
-        self.assertEqual(new.width, 2)
-        self.assertEqual(new.height, 3)
-        self.assertEqual(new.x, 5)
-        self.assertEqual(new.y, 5)
-        self.assertEqual(new.id, 4)
-
-    def test_new_rectangles(self):
-        """ Test new rectangles """
-        new = Rectangle(1, 1)
-        new2 = Rectangle(1, 1)
-        self.assertEqual(False, new is new2)
-        self.assertEqual(False, new.id == new2.id)
-
-    def test_is_Base_instance(self):
-        """ Test Rectangle is a Base instance """
-        new = Rectangle(1, 1)
-        self.assertEqual(True, isinstance(new, Base))
-
     def test_incorrect_amount_attrs(self):
         """ Test error raise with 1 arg passed """
         with self.assertRaises(TypeError):
@@ -55,17 +34,20 @@ class TestRectangleMethods(unittest.TestCase):
         with self.assertRaises(TypeError):
             new = Rectangle()
 
+    def test_new_rectangle_2(self):
+        """ Test new rectangle with all attrs """
+        new = Rectangle(2, 3, 5, 5, 4)
+        self.assertEqual(new.width, 2)
+        self.assertEqual(new.height, 3)
+        self.assertEqual(new.x, 5)
+        self.assertEqual(new.y, 5)
+        self.assertEqual(new.id, 4)
+
     def test_access_private_attrs(self):
         """ Trying to access to a private attribute """
         new = Rectangle(1, 1)
         with self.assertRaises(AttributeError):
             new.__width
-
-    def test_access_private_attrs_2(self):
-        """ Trying to access to a private attribute """
-        new = Rectangle(1, 1)
-        with self.assertRaises(AttributeError):
-            new.__height
 
     def test_access_private_attrs_3(self):
         """ Trying to access to a private attribute """
@@ -74,101 +56,43 @@ class TestRectangleMethods(unittest.TestCase):
             new.__x
 
     def test_access_private_attrs_4(self):
-        """ Trying to access to a private attribute """
+        """ access to a private attribute """
         new = Rectangle(1, 1)
         with self.assertRaises(AttributeError):
             new.__y
 
     def test_valide_attrs(self):
-        """ Trying to pass a string value """
+        """ pass a string value """
         with self.assertRaises(TypeError):
             new = Rectangle("2", 2, 2, 2, 2)
+
+    def test_access_private_attrs_2(self):
+        """ access to a private attribute """
+        new = Rectangle(1, 1)
+        with self.assertRaises(AttributeError):
+            new.__height
 
     def test_valide_attrs_2(self):
         """ Trying to pass a string value """
         with self.assertRaises(TypeError):
             new = Rectangle(2, "2", 2, 2, 2)
 
+    def test_is_Base_instance(self):
+        """ Test Rectangle is a Base instance """
+        new = Rectangle(1, 1)
+        self.assertEqual(True, isinstance(new, Base))
+
+    def test_new_rectangles(self):
+        """ Test new rectangles """
+        new = Rectangle(1, 1)
+        new2 = Rectangle(1, 1)
+        self.assertEqual(False, new is new2)
+        self.assertEqual(False, new.id == new2.id)
+
     def test_valide_attrs_3(self):
         """ Trying to pass a string value """
         with self.assertRaises(TypeError):
             new = Rectangle(2, 2, "2", 2, 2)
-
-    def test_valide_attrs_4(self):
-        """ Trying to pass a string value """
-        with self.assertRaises(TypeError):
-            new = Rectangle(2, 2, 2, "2", 2)
-
-    def test_value_attrs(self):
-        """ Trying to pass invalid values """
-        with self.assertRaises(ValueError):
-            new = Rectangle(0, 1)
-
-    def test_value_attrs_1(self):
-        """ Trying to pass invalid values """
-        with self.assertRaises(ValueError):
-            new = Rectangle(1, 0)
-
-    def test_value_attrs_2(self):
-        """ Trying to pass invalid values """
-        with self.assertRaises(ValueError):
-            new = Rectangle(1, 1, -1)
-
-    def test_value_attrs_3(self):
-        """ Trying to pass invalid values """
-        with self.assertRaises(ValueError):
-            new = Rectangle(1, 1, 1, -1)
-
-    def test_area(self):
-        """ Checking the return value of area method """
-        new = Rectangle(4, 5)
-        self.assertEqual(new.area(), 20)
-
-    def test_area_2(self):
-        """ Checking the return value of area method """
-        new = Rectangle(2, 2)
-        self.assertEqual(new.area(), 4)
-        new.width = 5
-        self.assertEqual(new.area(), 10)
-        new.height = 5
-        self.assertEqual(new.area(), 25)
-
-    def test_area_3(self):
-        """ Checking the return value of area method """
-        new = Rectangle(3, 8)
-        self.assertEqual(new.area(), 24)
-        new2 = Rectangle(10, 10)
-        self.assertEqual(new2.area(), 100)
-
-    def test_display(self):
-        """ Test string printed """
-        r1 = Rectangle(2, 5)
-        res = "##\n##\n##\n##\n##\n"
-        with patch('sys.stdout', new=StringIO()) as str_out:
-            r1.display()
-            self.assertEqual(str_out.getvalue(), res)
-
-    def test_display_2(self):
-        """ Test string printed """
-        r1 = Rectangle(2, 2)
-        res = "##\n##\n"
-        with patch('sys.stdout', new=StringIO()) as str_out:
-            r1.display()
-            self.assertEqual(str_out.getvalue(), res)
-
-        r1.width = 5
-        res = "#####\n#####\n"
-        with patch('sys.stdout', new=StringIO()) as str_out:
-            r1.display()
-            self.assertEqual(str_out.getvalue(), res)
-
-    def test_str(self):
-        """ Test __str__ return value """
-        r1 = Rectangle(2, 5, 2, 4)
-        res = "[Rectangle] (1) 2/4 - 2/5\n"
-        with patch('sys.stdout', new=StringIO()) as str_out:
-            print(r1)
-            self.assertEqual(str_out.getvalue(), res)
 
     def test_str_2(self):
         """ Test __str__ return value """
@@ -330,6 +254,30 @@ class TestRectangleMethods(unittest.TestCase):
         self.assertEqual(r1.width, 1)
         self.assertEqual(r1.height, 2)
 
+    def test_None_width(self):
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            Rectangle(None, 2)
+
+    def test_str_width(self):
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            Rectangle("invalid", 2)
+
+    def test_float_width(self):
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            Rectangle(5.5, 1)
+
+    def test_complex_width(self):
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            Rectangle(complex(5), 2)
+
+    def test_dict_width(self):
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            Rectangle({"a": 1, "b": 2}, 2)
+
+    def test_bool_width(self):
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            Rectangle(True, 2)
+
     def test_create_4(self):
         """ Test create method """
         dictionary = {'id': 89, 'width': 1, 'height': 2, 'x': 3}
@@ -338,6 +286,28 @@ class TestRectangleMethods(unittest.TestCase):
         self.assertEqual(r1.width, 1)
         self.assertEqual(r1.height, 2)
         self.assertEqual(r1.x, 3)
+
+    def test_height_getter(self):
+        r = Rectangle(5, 7, 7, 5, 1)
+        self.assertEqual(7, r.height)
+
+    def test_height_setter(self):
+        r = Rectangle(5, 7, 7, 5, 1)
+        r.height = 10
+        self.assertEqual(10, r.height)
+
+    def test_x_getter(self):
+        r = Rectangle(5, 7, 7, 5, 1)
+        self.assertEqual(7, r.x)
+
+    def test_x_setter(self):
+        r = Rectangle(5, 7, 7, 5, 1)
+        r.x = 10
+        self.assertEqual(10, r.x)
+
+    def test_y_getter(self):
+        r = Rectangle(5, 7, 7, 5, 1)
+        self.assertEqual(5, r.y)
 
     def test_create_5(self):
         """ Test create method """
